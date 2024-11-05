@@ -28,7 +28,6 @@ Rails.application.configure do
   # Compress CSS using a preprocessor.
   # config.assets.css_compressor = :sass
 
-  config.assets.enabled = true
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
@@ -96,14 +95,6 @@ Rails.application.configure do
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
-
-  if ENV['SKIP_ASSET_PRECOMPILE']
-    Rake::Task["assets:precompile"].clear
-    Rake::Task.define_task("assets:precompile" => :environment) do
-      puts "Skipping assets precompilation"
-    end
-  end
-  
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
