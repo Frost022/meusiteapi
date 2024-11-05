@@ -1,6 +1,7 @@
 {
   "engines": {
-    "node": "20.x"
+    "node": "20.x",
+    "yarn": "1.22.x"
   },
   "name": "frost-casamento",
   "private": true,
