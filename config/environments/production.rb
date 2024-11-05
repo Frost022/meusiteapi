@@ -94,6 +94,14 @@ Rails.application.configure do
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
 
+  if ENV['SKIP_ASSET_PRECOMPILE']
+    Rake::Task["assets:precompile"].clear
+    Rake::Task.define_task("assets:precompile" => :environment) do
+      puts "Skipping assets precompilation"
+    end
+  end
+  
+
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
